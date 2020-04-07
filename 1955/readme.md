@@ -1,0 +1,7 @@
+Sob a orientação da Profª Graziela Tonin, os estudantes de Tópicos Engenharia de Software estão desenvolvendo um sistema para ajudar o See World, o novo parque temático da cidade, a alocar orcas em dois tanques gigantes. As orcas, em particular, possuem uma hierarquia social bastante complexa, de pelo menos 4 níveis, e o curioso é que orcas são capazes de vocalizar diferentes dialetos, dependendo do nível da hierarquia social pelo qual se relacionam com seus interlocutores. Uma das maiores dificuldades em manter orcas em cativeiro é que, se duas orcas são postas juntas num mesmo tanque mas falam nenhum dialeto em comum, elas eventualmente brigarão, por não se entenderem, e por serem oriundas de culturas totalmente diferentes. Às vezes elas podem se machucar gravemente ou até morrer. Assim, o See World deseja alocar suas orcas nos seus dois tanques de modo que, se duas orcas forem alocadas num mesmo tanque, seja garantido que elas partilhem de ao menos um dialeto.
+
+# Entrada
+A primeira linha da entrada consiste de um inteiro N (1 ≤ N ≤ 103), o qual representa o número de orcas do See World. A propósito, cada orca do See World é representada unicamente por um único código entre 1 e N. Cada uma das N linhas seguintes consiste de N inteiros, de modo que o j-ésimo inteiro da i-ésima linha (1 ≤ i, j ≤ N) é 1 se as orcas de códigos i e j partilham de ao menos um dialeto ou 0 caso contrário.
+
+# Saída
+Imprima uma linha contendo unicamente a expressão Fail! se não é possível alocar as orcas nos tanques como desejado ou a expressão Bazinga! se é possível.
