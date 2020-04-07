@@ -8,12 +8,14 @@ Algumas agências são interligadas por meios eletrônicos de comunicação, com
 
 O serviço de espionagem do seu país conseguiu obter o conteúdo de todos os acordos de envios de mensagens existentes no mundo e deseja descobrir o tempo mínimo para se enviar uma carta entre diversos pares de cidades. Você seria capaz de ajudá-lo?
 
-#Entrada
+# Entrada
+
 A entrada contém vários casos de teste. A primeira linha de cada caso de teste contém dois inteiros separados por um espaço, N (1 ≤ N ≤ 500) e E (0 ≤ E ≤ N2), indicando o número de cidades (numeradas de 1 a N) e de acordos de envio de mensagens, respectivamente. Seguem-se, então, E linhas, cada uma com três inteiros separados por espaços, X, Y e H (1 ≤ X, Y ≤ N, 1 ≤ H ≤ 1000), indicando que existe um acordo para enviar uma carta impressa da cidade X à cidade Y , e que tal carta será entregue em H horas.
 
 Em seguida, haverá uma linha com um inteiro K (0 ≤ K ≤ 100), o número de consultas. Finalmente, virão K linhas, cada uma representando uma consulta e contendo dois inteiros separados por um espaço, O e D (1 ≤ O, D ≤ N). Você deve determinar o tempo mínimo para se enviar uma carta da cidade O à cidade D. A entrada termina quando N = E = 0.
 
-#Saída
+# Saída
+
 Para cada caso de teste da entrada seu programa deve produzir K linhas na saída. A I-ésima linha deve conter um inteiro M , o tempo mínimo, em horas, para se enviar uma carta na I-ésima consulta. Se não houver meio de comunicação entre as cidades da consulta, você deve imprimir ”Nao e possivel entregar a carta”(sem acentos).
 
 Imprima uma linha em branco após cada caso de teste.
