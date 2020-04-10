@@ -1,3 +1,5 @@
+https://www.urionlinejudge.com.br/judge/pt/problems/view/2731
+
 Valentina iniciou um novo desafio neste ano: ela irá dar aulas de programação! Ela está muito empolgada com essa atividade, uma vez que programar é uma de suas maiores paixões. Estas aulas ocorrerão durante a tarde em escolas de diversas cidades da sua região e ela deverá se deslocar de carro.
 
 Como Valentina está no 3º ano do curso de Ciência da Computação, ela deve voltar de seu trabalho a tempo de ir para a universidade. As aulas em que ela leciona terminam por volta das 17h30min, e as aulas da faculdade iniciam às 19h30min. Sendo assim, ela possui 2 horas para poder voltar para a sua cidade e chegar na universidade a tempo do início da sua aula.
