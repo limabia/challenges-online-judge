@@ -11,8 +11,10 @@ import java.util.*;
 public class Main {
 
  static int[] operations;
- static ArrayList < ArrayList < Character >> results = new ArrayList < > ();
+ static int[] positive;
+ static int[] negative;
  static int sum;
+ static Map < Pair, Boolean > done = new HashMap < Pair, Boolean > ();
 
  public static void main(String args[]) {
   Scanner sc = new Scanner(System.in);
@@ -26,45 +28,36 @@ public class Main {
    }
 
    operations = new int[nOperations];
+   positive = new int[nOperations];
+   negative = new int[nOperations];
 
    for (int i = 0; i < operations.length; i++) {
     operations[i] = sc.nextInt();
+    positive[i] = -1;
+    negative[i] = -1;
    }
 
-   results = new ArrayList < > ();
 
-   ArrayList < Character > currSignals = new ArrayList < Character > ();
+   done.clear();
 
-   checkSum(currSignals, 0, 0);
+   boolean valid = checkSum(0, 0);
 
    StringBuilder sb = new StringBuilder();
 
-   if (results.size() == 0) {
-    sb.append("*");
-   } else if (results.size() == 1) {
-    ArrayList < Character > signals = results.get(0);
-    for (int i = signals.size() - 1; i >= 0; i--) {
-     sb.append(signals.get(i));
+
+
+   if (valid) {
+    for (int i = 0; i < nOperations; i++) {
+     if (positive[i] == 0 && negative[i] == 0) {
+      sb.append("?");
+     } else if (positive[i] == 0 && negative[i] == -1) {
+      sb.append("+");
+     } else if (positive[i] == -1 && negative[i] == 0) {
+      sb.append("-");
+     }
     }
    } else {
-    ArrayList < Character > firstResult = results.get(0);
-    for (int i = 0; i < operations.length; i++) {
-     boolean equal = true;
-     Character signal = firstResult.get(i);
-
-     for (int j = 1; j < results.size(); j++) {
-      if (signal != results.get(j).get(i)) {
-       equal = false;
-       break;
-      }
-     }
-
-     if (equal) {
-      sb.append(signal);
-     } else {
-      sb.append("?");
-     }
-    }
+    sb.append("*");
    }
 
    System.out.println(sb);
@@ -73,35 +66,66 @@ public class Main {
   sc.close();
  }
 
- public static void checkSum(ArrayList < Character > currSignals, int number, int indexNextOperation) {
+ public static boolean checkSum(int number, int indexNextOperation) {
 
   if (indexNextOperation >= operations.length) {
    if (number == sum) {
-    ArrayList < Character > foundSignals = (ArrayList < Character > ) currSignals.clone();
-    results.add(foundSignals);
-   } else if (number * -1 == sum) {
-    ArrayList < Character > foundSignals = new ArrayList < Character > ();
-    for (char c: currSignals) {
-     if (c == '+') {
-      foundSignals.add('-');
-     } else {
-      foundSignals.add('+');
-     }
-    }
-    results.add(foundSignals);
+    return true;
    }
-   return;
+   return false;
   }
 
-  currSignals.add('-');
+  Pair p = new Pair(indexNextOperation, number);
 
-  checkSum(currSignals, number - operations[indexNextOperation], indexNextOperation + 1);
-  currSignals.remove(currSignals.size() - 1);
-
-  if (indexNextOperation > 0) {
-   currSignals.add('+');
-   checkSum(currSignals, number + operations[indexNextOperation], indexNextOperation + 1);
-   currSignals.remove(currSignals.size() - 1);
+  if (done.containsKey(p)) {
+   return done.get(p);
   }
+
+
+  boolean saida = checkSum(number - operations[indexNextOperation], indexNextOperation + 1);
+  boolean entrada = checkSum(number + operations[indexNextOperation], indexNextOperation + 1);
+
+
+
+  if (saida && entrada) {
+   positive[indexNextOperation] = 0;
+   negative[indexNextOperation] = 0;
+  } else if (saida && !entrada) {
+   negative[indexNextOperation] = 0;
+  } else if (!saida && entrada) {
+   positive[indexNextOperation] = 0;
+  }
+
+  done.put(p, saida || entrada);
+
+  return (saida || entrada);
+
  }
+
+
+ public static class Pair {
+
+  public Integer id;
+  public Integer number;
+
+  public Pair(int id, int number) {
+   this.id = id;
+   this.number = number;
+  }
+
+  @Override
+  public int hashCode() {
+   return id.hashCode() ^ number.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+   if (!(o instanceof Pair)) return false;
+   Pair pairo = (Pair) o;
+   return this.id.equals(pairo.id) &&
+    this.number.equals(pairo.number);
+  }
+
+ }
+
 }
